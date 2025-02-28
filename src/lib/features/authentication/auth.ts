@@ -8,15 +8,25 @@ import { PUBLIC_PROJECT_NAME } from '$env/static/public';
 import { db } from '../../server/db';
 
 export const auth = betterAuth({
+  account: {
+    accountLinking: {
+      trustedProviders: ['google'],
+    },
+  },
   appName: PUBLIC_PROJECT_NAME,
   database: drizzleAdapter(db, {
     provider: 'pg',
   }),
   emailAndPassword: {
     enabled: true,
+    async sendResetPassword(data, request) {
+      console.log(data);
+    },
   },
   emailVerification: {
-    sendVerificationEmail: async ({ user, url, token }, request) => {},
+    async sendVerificationEmail({ user, url }) {
+      console.log(url);
+    },
   },
   plugins: [jwt()],
   socialProviders: {

@@ -13,6 +13,7 @@
     "db:start": "docker compose up",
     "db:studio": "drizzle-kit studio",
     "dev": "vite dev",
+    "dev:email": "email dev --dir src/lib/server/emails --port 1234",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "prepare": "husky",
@@ -35,10 +36,13 @@
   },
   "dependencies": {
     "@inlang/paraglide-sveltekit": "^0.15.5",
+    "@react-email/components": "0.0.33",
     "better-auth": "^1.1.21",
     "drizzle-orm": "^0.40.0",
     "postgres": "^3.4.5",
-    "ramda": "^0.30.1"
+    "ramda": "^0.30.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
@@ -71,6 +75,7 @@
     "prettier": "^3.5.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "react-email": "3.0.7",
     "svelte": "^5.20.5",
     "svelte-check": "^4.1.4",
     "svelte-sonner": "^0.3.28",
