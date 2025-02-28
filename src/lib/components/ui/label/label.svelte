@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Label as LabelPrimitive } from 'bits-ui';
-  import clsx from 'clsx';
+
+  import { cn } from '$lib/utils.js';
 
   let {
     ref = $bindable(null),
@@ -11,7 +12,7 @@
 
 <LabelPrimitive.Root
   bind:ref
-  class={clsx(
+  class={cn(
     'text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
     className,
   )}

@@ -4,4 +4,4 @@ import { PUBLIC_ORIGIN } from '$env/static/public';
 
 const client = createAuthClient({ baseURL: PUBLIC_ORIGIN });
 
-export const { signIn, signUp, useSession, signOut } = client;
+export const { signIn, signUp, signOut, useSession, sendVerificationEmail } = client;

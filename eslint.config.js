@@ -71,6 +71,7 @@ const boundariesConfig = {
 };
 
 const customConfig = {
+  files: ['**/*.svelte', '**/*.ts'],
   plugins: {
     'simple-import-sort': simpleImportSort,
     'sort-keys-fix': sortKeysFix,

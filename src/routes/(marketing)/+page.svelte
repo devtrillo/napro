@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Button from '$lib/components/ui/button.svelte';
-  import { useSession, signOut } from '$lib/features/authentication/auth-client';
+  import { Button } from '$lib/components/ui/button';
+  import { signOut, useSession } from '$lib/features/authentication/auth-client';
 
   const session = useSession();
-  const sess 
+
   let to = $derived($session.data ? '/dashboard' : '/authenticate');
 </script>
 

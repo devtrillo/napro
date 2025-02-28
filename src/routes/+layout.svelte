@@ -3,7 +3,9 @@
 
   import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 
+  import { Toaster } from '$lib/components/ui/sonner';
   import { i18n } from '$lib/i18n';
+
   let { children } = $props();
 </script>
 
@@ -14,5 +16,6 @@
   <link rel="manifest" href="/manifest.webmanifest" />
 </svelte:head>
 <ParaglideJS {i18n}>
+  <Toaster />
   {@render children()}
 </ParaglideJS>

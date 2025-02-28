@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["formsnap", "paraglide", "superforms"]
+  "cSpell.words": ["formsnap", "paraglide", "superforms"],
+  "eslint.format.enable": true
 }

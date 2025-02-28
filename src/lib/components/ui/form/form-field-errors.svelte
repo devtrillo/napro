@@ -1,7 +1,8 @@
 <script lang="ts">
-  import * as FormPrimitive from 'formsnap';
   import type { WithoutChild } from 'bits-ui';
-  import clsx from 'clsx';
+  import * as FormPrimitive from 'formsnap';
+
+  import { cn } from '$lib/utils.js';
 
   let {
     ref = $bindable(null),
@@ -16,15 +17,15 @@
 
 <FormPrimitive.FieldErrors
   bind:ref
-  class={clsx('text-error text-sm font-medium', className)}
+  class={cn('text-destructive text-sm font-medium', className)}
   {...restProps}
 >
   {#snippet children({ errors, errorProps })}
     {#if childrenProp}
-      {@render childrenProp({ errors, errorProps })}
+      {@render childrenProp({ errorProps, errors })}
     {:else}
       {#each errors as error}
-        <div {...errorProps} class={clsx(errorClasses)}>{error}</div>
+        <div {...errorProps} class={cn(errorClasses)}>{error}</div>
       {/each}
     {/if}
   {/snippet}
