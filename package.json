@@ -27,6 +27,10 @@
     ],
     "package.json": [
       "npx sort-package-json --no"
+    ],
+    ".{svelte,ts}": [
+      "prettier --write --ignore-unknown",
+      "eslint --fix"
     ]
   },
   "dependencies": {
