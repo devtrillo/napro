@@ -22,7 +22,7 @@
       const password = formData.get('password')?.toString();
       if (!email || !password) return { error: { code: 'auth/invalid-email-or-password' } };
 
-      const { error, data } = await signIn.email({
+      const { error } = await signIn.email({
         callbackURL: '/',
         email,
         password,

@@ -20,7 +20,7 @@
     async onSubmit({ formData }) {
       const email = formData.get('email')?.toString();
       const password = formData.get('password')?.toString();
-      const name = formData.get('password')?.toString();
+      const name = formData.get('name')?.toString();
 
       if (!email || !password || !name)
         return { error: { code: 'auth/invalid-email-or-password' } };
@@ -91,9 +91,9 @@
       <Form.Button disabled={$delayed} class="w-full">
         {#if $delayed}
           <LoaderCircleIcon class="animate-spin" />
-          {m.auth_signin_progress()}
+          {m.AUTH_SIGNIN_PROGRESS()}
         {:else}
-          {m.auth_register()}
+          {m.AUTH_REGISTER()}
         {/if}
       </Form.Button>
     </form>

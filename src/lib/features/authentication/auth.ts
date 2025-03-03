@@ -1,6 +1,7 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { jwt } from 'better-auth/plugins';
+import { jwt, twoFactor } from 'better-auth/plugins';
+import { passkey } from 'better-auth/plugins/passkey';
 
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '$env/static/private';
 import { PUBLIC_PROJECT_NAME } from '$env/static/public';
@@ -19,7 +20,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    async sendResetPassword(data, request) {
+    async sendResetPassword(data) {
       console.log(data);
     },
   },
@@ -28,7 +29,17 @@ export const auth = betterAuth({
       console.log(url);
     },
   },
-  plugins: [jwt()],
+  plugins: [
+    jwt(),
+    passkey(),
+    twoFactor({
+      otpOptions: {
+        async sendOTP({ user, otp }) {
+          console.log(otp, user);
+        },
+      },
+    }),
+  ],
   socialProviders: {
     google: {
       clientId: GOOGLE_CLIENT_ID,

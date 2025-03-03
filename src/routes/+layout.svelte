@@ -2,6 +2,7 @@
   import '../lib/app.css';
 
   import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+  import { ModeWatcher } from 'mode-watcher';
 
   import { Toaster } from '$lib/components/ui/sonner';
   import { i18n } from '$lib/i18n';
@@ -15,6 +16,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
 </svelte:head>
+
+<ModeWatcher />
+
 <ParaglideJS {i18n}>
   <Toaster />
   {@render children()}
