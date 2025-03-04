@@ -19,7 +19,6 @@
   "FAILED_TO_GET_USER_INFO": "Failed to get user info",
   "FAILED_TO_UNLINK_LAST_ACCOUNT": "Failed to unlink last account",
   "FAILED_TO_UPDATE_USER": "Failed to update user",
-  "HELLO_WORLD": "Hello, {name} from en!",
   "ID_TOKEN_NOT_SUPPORTED": "Id token not supported",
   "INVALID_EMAIL": "Invalid email",
   "INVALID_EMAIL_OR_PASSWORD": "Invalid email or password",
