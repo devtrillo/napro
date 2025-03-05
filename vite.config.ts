@@ -1,7 +1,7 @@
 import { paraglide } from '@inlang/paraglide-sveltekit/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { svelteTesting } from '@testing-library/svelte/vite';
-import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -9,8 +9,8 @@ export default defineConfig({
     sveltekit(),
     tailwindcss(),
     paraglide({
-      project: './project.inlang',
       outdir: './src/lib/paraglide',
+      project: './project.inlang',
     }),
   ],
 
@@ -21,11 +21,11 @@ export default defineConfig({
         plugins: [svelteTesting()],
 
         test: {
-          name: 'client',
-          environment: 'jsdom',
           clearMocks: true,
-          include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
+          environment: 'jsdom',
           exclude: ['src/lib/server/**'],
+          include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
+          name: 'client',
           setupFiles: ['./vitest-setup-client.ts'],
         },
       },
@@ -33,10 +33,10 @@ export default defineConfig({
         extends: './vite.config.ts',
 
         test: {
-          name: 'server',
           environment: 'node',
-          include: ['src/**/*.{test,spec}.{js,ts}'],
           exclude: ['src/**/*.svelte.{test,spec}.{js,ts}'],
+          include: ['src/**/*.{test,spec}.{js,ts}'],
+          name: 'server',
         },
       },
     ],

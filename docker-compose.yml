@@ -1,10 +1,44 @@
 services:
+  # mailpit:
+  #   image: axllent/mailpit
+  #   container_name: mailpit
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./data:/data
+  #   ports:
+  #     - 8025:8025
+  #     - 1025:1025
+  #   environment:
+  #     MP_MAX_MESSAGES: 5000
+  #     MP_DATABASE: /data/mailpit.db
+  #     MP_SMTP_AUTH_ACCEPT_ANY: 1
+  #     MP_SMTP_AUTH_ALLOW_INSECURE: 1
   db:
-    image: postgres
+    image: postgres:16.2-alpine
+    shm_size: 1g
+    user: postgres
     restart: always
+    healthcheck:
+      test: 'pg_isready -U user --dbname=postgres'
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
-      - 5432:5432
+      - 9999:5432
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: local
+      POSTGRES_USER: user
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: password
+    command: |
+      postgres 
+      -c wal_level=logical
+      -c max_wal_senders=10 
+      -c max_replication_slots=5 
+      -c hot_standby=on 
+      -c hot_standby_feedback=on
+    volumes:
+      - zstart_pgdata:/var/lib/postgresql/data
+      - ./:/docker-entrypoint-initdb.d
+volumes:
+  zstart_pgdata:
+    driver: local
