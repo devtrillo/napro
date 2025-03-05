@@ -15,6 +15,13 @@
       "when": 1740758665146,
       "tag": "0001_typical_madrox",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1741124502665,
+      "tag": "0002_milky_ezekiel",
+      "breakpoints": true
     }
   ]
 }

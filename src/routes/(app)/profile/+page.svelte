@@ -9,6 +9,8 @@
   import ListPasskey from '$lib/features/authentication/components/list-passkey.svelte';
   import Session from '$lib/features/authentication/components/session.svelte';
   import SignOut from '$lib/features/authentication/components/sign-out.svelte';
+  import TwoFactorDisable from '$lib/features/authentication/components/two-factor-disable.svelte';
+  import TwoFactorEnabled from '$lib/features/authentication/components/two-factor-enabled.svelte';
   import VerifyEmail from '$lib/features/authentication/components/verify-email.svelte';
 
   import type { PageData } from './$types';
@@ -60,7 +62,13 @@
       </div>
       <div class="flex flex-col gap-2">
         <p class="text-sm">Two Factor</p>
-        <div class="flex gap-2"></div>
+        <div class="flex gap-2">
+          {#if user.twoFactorEnabled}
+            <TwoFactorDisable />
+          {:else}
+            <TwoFactorEnabled />
+          {/if}
+        </div>
       </div>
     </div>
   </Card.Content>

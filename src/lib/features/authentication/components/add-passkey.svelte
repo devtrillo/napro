@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { FingerprintIcon, PlusIcon, LoaderIcon } from 'lucide-svelte';
+  import { FingerprintIcon, LoaderIcon, PlusIcon } from 'lucide-svelte';
   import { toast } from 'svelte-sonner';
   import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
-  import * as m from '$lib/paraglide/messages';
+
   import { invalidate } from '$app/navigation';
   import { buttonVariants } from '$lib/components/ui/button';
   import * as Dialog from '$lib/components/ui/dialog';
   import * as Form from '$lib/components/ui/form';
   import { Input } from '$lib/components/ui/input';
+  import * as m from '$lib/paraglide/messages';
   import { cn } from '$lib/utils';
 
   import { passkey } from '../auth-client';
@@ -16,7 +17,7 @@
 
   let { form: propForm }: { form: SuperValidated<Infer<typeof addPasskeySchema>> } = $props();
 
-  let open = $state(true);
+  let open = $state(false);
   const form = superForm(propForm, {
     SPA: true,
     id: 'add-passkey',
@@ -48,7 +49,7 @@
         Create a new passkey to securely access your account without a password.
       </Dialog.Description>
     </Dialog.Header>
-    <form class="" use:enhance>
+    <form use:enhance>
       <div class="grid gap-2">
         <Form.Field {form} name="name">
           <Form.Control>

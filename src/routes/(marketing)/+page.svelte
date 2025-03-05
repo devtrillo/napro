@@ -4,7 +4,7 @@
 
   const session = useSession();
 
-  let to = $derived($session.data ? '/dashboard' : '/authenticate');
+  let to = $derived($session.data ? '/profile' : '/authenticate');
 </script>
 
 <h1 class=" text-2xl">Welcome to SvelteKit</h1>
@@ -25,7 +25,7 @@
         </path>
       </svg>
       {#if $session.data}
-        Dashboard
+        Profile
       {:else}
         Sign In
       {/if}

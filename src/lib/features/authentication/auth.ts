@@ -25,7 +25,7 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    async sendVerificationEmail({ user, url }) {
+    async sendVerificationEmail({ url }) {
       console.log(url);
     },
   },
@@ -40,6 +40,12 @@ export const auth = betterAuth({
       },
     }),
   ],
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60, // 5 minutes
+    },
+  },
   socialProviders: {
     google: {
       clientId: GOOGLE_CLIENT_ID,

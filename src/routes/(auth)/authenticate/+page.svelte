@@ -12,16 +12,18 @@
   let { data }: { data: PageData } = $props();
 </script>
 
-<Tabs.Root value="sign-in" class="w-[400px]">
-  <Tabs.List>
-    {#each authMethods as { value, text } (value)}
-      <Tabs.Trigger {value}>{text}</Tabs.Trigger>
-    {/each}
-  </Tabs.List>
-  <Tabs.Content value="sign-in">
-    <LoginForm form={data.loginForm} />
-  </Tabs.Content>
-  <Tabs.Content value="register">
-    <RegisterForm form={data.registerForm} />
-  </Tabs.Content>
-</Tabs.Root>
+<div class="mx-auto flex h-dvh w-dvw items-center justify-center">
+  <Tabs.Root value="sign-in" class="w-[400px]">
+    <Tabs.List>
+      {#each authMethods as { value, text } (value)}
+        <Tabs.Trigger {value}>{text}</Tabs.Trigger>
+      {/each}
+    </Tabs.List>
+    <Tabs.Content value="sign-in">
+      <LoginForm form={data.loginForm} />
+    </Tabs.Content>
+    <Tabs.Content value="register">
+      <RegisterForm form={data.registerForm} />
+    </Tabs.Content>
+  </Tabs.Root>
+</div>

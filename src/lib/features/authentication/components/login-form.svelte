@@ -4,6 +4,7 @@
   import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms';
   import { zod } from 'sveltekit-superforms/adapters';
 
+  import { goto } from '$app/navigation';
   import { Button } from '$lib/components/ui/button';
   import * as Card from '$lib/components/ui/card';
   import * as Form from '$lib/components/ui/form';
@@ -39,6 +40,10 @@
       callbackURL: '/',
       provider: 'google',
     });
+  const loginPasskey = async () => {
+    await signIn.passkey({ autoFill: true });
+    goto('/');
+  };
 </script>
 
 <Card.Root>
@@ -69,14 +74,14 @@
       <Form.Button disabled={$delayed} class="w-full">
         {#if $delayed}
           <LoaderCircleIcon class="animate-spin" />
-          {m.auth_signin_progress()}
+          {m.AUTH_SIGNIN_PROGRESS()}
         {:else}
-          {m.auth_signin()}
+          {m.AUTH_SIGNIN()}
         {/if}
       </Form.Button>
     </form>
   </Card.Content>
-  <Card.Footer>
+  <Card.Footer class="flex flex-wrap">
     <Button variant="outline" class="gap-2" onclick={loginGoogle}>
       <svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
         <path
@@ -97,5 +102,6 @@
         />
       </svg>
     </Button>
+    <Button class="w-full" onclick={loginPasskey}>Login with Passkey</Button>
   </Card.Footer>
 </Card.Root>
