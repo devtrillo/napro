@@ -1,10 +1,8 @@
-import { betterAuth } from 'better-auth';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { db } from './server/db';
+import { magicLinkClient, organizationClient } from 'better-auth/client/plugins';
+import { createAuthClient } from 'better-auth/react';
 
-export const auth = betterAuth({
-	emailAndPassword: {
-		enabled: true
-	},
-	database: drizzleAdapter(db, { provider: 'pg' })
+const authClient = createAuthClient({
+	plugins: [magicLinkClient(), organizationClient()]
 });
+
+export default authClient;
