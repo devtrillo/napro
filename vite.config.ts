@@ -1,16 +1,10 @@
-import { paraglide } from '@inlang/paraglide-sveltekit/vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [
-		paraglide({ project: './project.inlang', outdir: './src/lib/paraglide' }),
-		tailwindcss(),
-		sveltekit(),
-		devtoolsJson()
-	],
+	plugins: [tailwindcss(), sveltekit(), devtoolsJson()],
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
