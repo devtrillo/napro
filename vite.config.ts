@@ -11,6 +11,9 @@ export default defineConfig({
 		sveltekit(),
 		devtoolsJson()
 	],
+	define: {
+		'import.meta.vitest': 'undefined'
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
@@ -32,6 +35,7 @@ export default defineConfig({
 			{
 				extends: './vite.config.ts',
 				test: {
+					includeSource: ['src/**/*.{js,ts}'],
 					name: 'server',
 					environment: 'node',
 					include: ['src/**/*.{test,spec}.{js,ts}'],
