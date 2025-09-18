@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Select from '$lib/components/ui/select';
+	import { cn } from '$lib/utils';
 
 	let {
 		initialValue,
@@ -8,12 +9,14 @@
 		description,
 		error,
 		id,
+		...selectProps
 	}: {
 		id: string;
 		label: string;
 		description?: string;
 		error?: string;
 		initialValue?: string;
+		name?: string;
 		options: { label: string; value: string; disabled?: boolean }[];
 	} = $props();
 	let value = $state(initialValue ?? '');

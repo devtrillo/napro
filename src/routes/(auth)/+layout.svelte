@@ -7,6 +7,7 @@
 	import AvatarImage from '$lib/components/ui/avatar/avatar-image.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { updateUserId } from '$lib/stores/user.svelte';
 	import { cn } from '$lib/utils';
 
 	import type { LayoutProps } from './$types';
@@ -18,6 +19,7 @@
 		.map((n) => n[0])
 		.join('')
 		.toUpperCase();
+	updateUserId(data.user?.id);
 </script>
 
 <header
@@ -26,7 +28,7 @@
 	<div class="container flex h-16 items-center justify-between px-4">
 		<div class="flex items-center gap-3">
 			<a href={resolve('/app')} class="flex items-center gap-3">
-				<div class="flex h-8 w-8 items-center justify-center rounded-lg">
+				<div class="hidden h-8 w-8 items-center justify-center rounded-lg sm:flex">
 					<CalendarIcon class="h-4 w-4" />
 				</div>
 				<div>
@@ -36,7 +38,7 @@
 		</div>
 
 		<div class="flex items-center gap-3">
-			<Button variant="ghost" size="sm" class="relative">
+			<Button variant="ghost" size="sm" class="relative hidden sm:block">
 				<BellIcon class="h-4 w-4" />
 				{#if notifications > 0}
 					<span
@@ -58,7 +60,7 @@
 									alt={data.user?.name}
 								/>
 							</Avatar>
-							<div>
+							<div class="hidden sm:block">
 								<p class="text-foreground text-left text-sm font-medium">{data.user?.name}</p>
 								<p class=" text-muted-foreground text-left text-xs">{data.user?.email}</p>
 							</div>

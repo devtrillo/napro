@@ -7,7 +7,6 @@
 	type TextInputProps = {
 		label: string;
 		id: string;
-
 		class?: string;
 		description?: string;
 		error?: string;

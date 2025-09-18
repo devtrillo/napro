@@ -18,7 +18,6 @@ export const LoginUser = form(async (formData) => {
 		body: {
 			callbackURL: '/app',
 			email: result.data.email,
-			newUserCallbackURL: '/welcome',
 		},
 		headers: request.headers,
 	});

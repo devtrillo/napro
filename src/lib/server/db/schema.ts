@@ -7,7 +7,6 @@ import {
 	pgEnum,
 	pgTable,
 	text,
-	time,
 	timestamp,
 	unique,
 	uuid,
@@ -18,13 +17,20 @@ import { timestamps } from './helpers';
 
 export * from './auth-schema';
 
+export const todo = pgTable('todo', {
+	completed: boolean().default(false),
+	id: uuid().primaryKey(),
+	title: text(),
+});
 export const trackingEnum = pgEnum('tracking_method', ['creighton']);
 
 export const fertilityPreferences = pgTable('fertility_preferences', {
 	avgCycleLength: integer('avg_cycle_length').notNull().default(28),
-	dailyReminder: time('daily_reminder', { withTimezone: false }).notNull().default('08:00:00'),
+	dailyReminder: timestamp('daily_reminder', { withTimezone: false }).notNull().default(),
 	trackingMethod: trackingEnum(),
-	userId: text('user_id').references(() => user.id, { onDelete: 'cascade' }),
+	userId: text('user_id')
+		.references(() => user.id, { onDelete: 'cascade' })
+		.primaryKey(),
 });
 
 export const cycles = pgTable(
@@ -32,7 +38,6 @@ export const cycles = pgTable(
 	{
 		...timestamps,
 		cycleLength: integer('cycle_length'),
-		cycleNumber: integer('cycle_number').notNull(),
 		endDate: timestamp('end_date', { mode: 'date' }),
 		id: uuid('id').primaryKey().defaultRandom(),
 		isComplete: boolean('is_complete').default(false),
@@ -46,9 +51,9 @@ export const cycles = pgTable(
 			.references(() => user.id, { onDelete: 'cascade' }),
 	},
 	(t) => [
-		unique().on(t.cycleNumber, t.userId),
+		unique().on(t.number, t.userId),
 		index('idx_cycles_user_date').on(t.userId, t.startDate),
-		index('idx_cycles_user_number').on(t.userId, t.cycleNumber),
+		index('idx_cycles_user_number').on(t.userId, t.number),
 	],
 );
 
